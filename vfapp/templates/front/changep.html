@@ -1,0 +1,53 @@
+{%extends 'front/master.html'%}
+{%load static%}
+
+{% block title %}
+    <title>VFlix | Home</title>        
+{% endblock %}
+
+{% block subtitle %}
+    <div class="block-title">
+        <h2><strong>Change password</strong></h2>
+    </div>
+{% endblock %}
+
+{% block mainblock %}
+    
+    <form action="{% url 'changepassword' %}" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="val_username">Username <span class="text-danger">*</span></label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" id="val_username" name="uname" class="form-control">
+                    <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="val_password">Old Password <span class="text-danger">*</span></label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="password" id="val_password" name="opass" class="form-control">
+                    <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="val_confirm_password">New Password <span class="text-danger">*</span></label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="password" id="val_confirm_password" name="npass" class="form-control">
+                    <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-8 col-md-offset-4">
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-ok"></i>Submit</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

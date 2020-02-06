@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        {% block title %}
+        
+        {% endblock %}
+
+        <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
+        <!-- Icons -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="{% static 'front/img/favicon.png' %}">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon57.png' %}" sizes="57x57">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon72.png' %}" sizes="72x72">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon76.png' %}" sizes="76x76">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon114.png' %}" sizes="114x114">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon120.png' %}" sizes="120x120">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon144.png' %}" sizes="144x144">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon152.png' %}" sizes="152x152">
+        <link rel="apple-touch-icon" href="{% static 'front/img/icon180.png' %}" sizes="180x180">
+        <!-- END Icons -->
+
+        <!-- Stylesheets -->
+        <!-- Bootstrap is included in its original form, unaltered -->
+        <link rel="stylesheet" href="{% static 'front/css/bootstrap.min.css' %}">
+
+        <!-- Related styles of various icon packs and plugins -->
+        <link rel="stylesheet" href="{% static 'front/css/plugins.css' %}">
+
+        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <link rel="stylesheet" href="{% static 'front/css/main.css' %}">
+
+        <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+        <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <link rel="stylesheet" href="{% static 'front/css/themes.css' %}">
+        <!-- END Stylesheets -->
+
+        <!-- Modernizr (browser feature detection library) -->
+        <script src="{% static 'front/js/vendor/modernizr.min.js' %}"></script>
+    </head>
+    <body>
+
+        <div id="page-wrapper">
+
+            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Brand -->
+                            <a href="{% static 'front/index.html" class="sidebar-brand">
+                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>VFlix</strong></span>
+                            </a>
+                            <!-- END Brand -->
+
+                            <!-- User Info -->
+                            <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+                                <div class="sidebar-user-name">{{username}}</div>
+                            </div>
+                            <!-- END User Info -->
+
+
+                            <!-- Sidebar Navigation -->
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a href="/"><i class="gi gi-leaf sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Movies List</span></a>
+                                </li>
+                                <li>
+                                    <a href="/watched_movies"><i class="gi gi-leaf sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Watched Movies</span></a>
+                                </li>
+                                <li>
+                                    <a href="/suggested_movies"><i class="gi gi-leaf sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Suggested Movies</span></a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="main-container">
+                    
+                    <header class="navbar navbar-inverse">
+                        <!-- Search Form -->
+                        <form action="{% url 'search' %}" method="post" class="navbar-form-custom">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" id="top-search" name="search" class="form-control" placeholder="Search..">
+                            </div>
+                        </form>
+                        <!-- END Search Form -->
+
+                        <!-- Right Header Navigation -->
+                        <ul class="nav navbar-nav-custom pull-right">
+
+                            <!-- User Dropdown -->
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{% static 'front/img/placeholders/avatars/avatar2.jpg' %}" alt="avatar"> <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                                    <li>
+                                        <a href="{% url 'changepassword' %}" data-toggle="modal">
+                                            <i class="fa fa-cog fa-fw pull-right"></i>
+                                            Change Password
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'exit' %}">
+                                            <i class="fa fa-ban fa-fw pull-right"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END User Dropdown -->
+                        </ul>
+                        <!-- END Right Header Navigation -->
+                    </header>
+                    <!-- END Header -->
+
+                    <!-- Page content -->
+                    <div id="page-content">
+
+                        <div class="block full">
+                            <!-- All Orders Title -->
+                            {% block subtitle %}
+
+                            {% endblock %}
+                            <!-- END All Orders Title -->
+                            {% block mainblock %}
+                            
+                            {% endblock %}
+                            <!-- END All Orders Content -->
+                        </div>
+
+                    </div>
+                    <!-- END Footer -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
+        </div>
+        <!-- END Page Wrapper -->
+
+        <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+
+        <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+        <script src="{% static 'front/js/vendor/jquery.min.js' %}"></script>
+        <script src="{% static 'front/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'front/js/plugins.js' %}"></script>
+        <script src="{% static 'front/js/app.js' %}"></script>
+
+        <!-- Google Maps API Key (you will have to obtain a Google Maps API key to use Google Maps) -->
+        <!-- For more info please have a look at https://developers.google.com/maps/documentation/javascript/get-api-key#key -->
+        <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+        <script src="{% static 'front/js/helpers/gmaps.min.js' %}"></script>
+
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'front/js/pages/index.js' %}"></script>
+        <script>$(function(){ Index.init(); });</script>
+    </body>
+</html>

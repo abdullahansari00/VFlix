@@ -1,0 +1,5 @@
+<form action="{% url 'upload_movies' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<input type="file" name="mlist">
+	<button type="submit">Submit</button>
+</form>

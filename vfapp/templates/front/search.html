@@ -1,0 +1,51 @@
+{%extends 'front/master.html'%}
+{%load static%}
+
+{% block title %}
+    <title>VFlix | Search</title>        
+{% endblock %}
+
+{% block subtitle %}
+    <div class="block-title">
+        <h2><strong>Search results for "{{search}}"</strong></h2>
+    </div>
+{% endblock %}
+
+{% block mainblock %}
+<!-- All Orders Content -->
+<table id="ecom-orders" class="table table-bordered table-striped table-vcenter">
+    <thead>
+        <tr>
+            <th class="text-center" style="width: 10px;">Rank</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Genre</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Director(s)</th>
+            <th class="text-center">Actors</th>
+            <th class="text-center">Year</th>
+            <th class="text-center">Rating</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for x in movies %}
+        <tr>
+            <td class="text-center">{{x.rank}}</td>
+            <td class="text-center">{{x.title}}</td>
+            <td class="text-center">{{x.genre}}</td>
+            <td class="text-center">{{x.description}}</td>
+            <td class="text-center">{{x.director}}</td>
+            <td class="text-center">{{x.actors}}</td>
+            <td class="text-center">{{x.year}}</td>
+            <td class="text-center">{{x.rating}}</td>
+            {% if x.rank not in watched %}
+            <td><a href="{% url 'add_movie' rank=x.rank var=0 %}" class="btn btn-alt btn-info" title="add to watched movies list"><i class="fa fa-plus"></i></a></td>
+            {% else %}
+            <td><a href="{% url 'del_movie' rank=x.rank var=0%}" class="btn btn-alt btn-danger" title="remove from watched movies list"><i class="fa fa-minus"></i></a></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+
+{% endblock %}
